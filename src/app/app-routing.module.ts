@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './component/login/login.component';
 import { NavComponent } from './component/nav/nav.component';
+import { ChatpageComponent } from './component/chatpage/chatpage.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'nav', component: NavComponent }
+  { path: 'nav', component: NavComponent },
+  { path: 'DM', component: ChatpageComponent }
+
 ];
 
 @NgModule({

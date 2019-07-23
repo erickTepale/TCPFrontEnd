@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         this.loginService.currentUser.user_id = this.currentUsers[i].user_id;
         this.loginService.currentUser.username = this.currentUsers[i].username;
         
-        this.router.navigate(['nav']);
+        this.router.navigate(['DM']);
       }
     }
 
