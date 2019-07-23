@@ -29,7 +29,7 @@ export class LoginService {
 
   getData(username:string): Observable<CurrentUser[]>{
     console.log("inside loginService -> getData");
-    let address:string = "https://belle-maison-41978.herokuapp.com/user/" + username;
+    let address:string = "http://localhost:8080/user/" + username;
     return this.http.get<CurrentUser[]>(address, httpOptions);
   }
 

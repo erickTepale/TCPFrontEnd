@@ -11,6 +11,16 @@
 
 <!-- Where Messages appear -->
 <div class="container-fluid">
+        <div class="card" *ngFor="let message of messages">
+                <div class="card-body">
+                  <div class="card-title" *ngIf='allUser'>{{allUser[message.userId-1].username}}</div>
+                <div class="card-text">{{message.message}}</div>
+                </div>
+              
+                <div class="card-subtitle">
+                  {{message.time}}
+                </div>
+        </div>
 
 </div>
 
