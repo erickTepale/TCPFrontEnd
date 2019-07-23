@@ -9,6 +9,7 @@ import { ChatpageComponent } from './component/chatpage/chatpage.component';
 import { ListComponent } from './component/list/list.component';
 import { AboutComponent } from './component/about/about.component';
 import { NavComponent } from './component/nav/nav.component';
+import { CmChatpageComponent } from './component/cm-chatpage/cm-chatpage.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavComponent } from './component/nav/nav.component';
     ChatpageComponent,
     ListComponent,
     AboutComponent,
-    NavComponent
+    NavComponent,
+    CmChatpageComponent
   ],
   imports: [
     BrowserModule,
