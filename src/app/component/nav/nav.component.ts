@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
@@ -38,7 +39,6 @@ export class NavComponent implements OnInit {
     //change button colors
     this.changeColor("chan");
   }
-
   toDM(){
     //updates the service display for nav
     this.navService.selected = "dm";
@@ -61,5 +61,9 @@ export class NavComponent implements OnInit {
       document.getElementById("dm").className = "btn btn-primary btn-lg";
       document.getElementById("chan").className = "btn btn-secondary btn-lg";
     }
+  }
+  goDM() {
+    this.router.navigate(['DM']);
+    console.log('?');
   }
 }
