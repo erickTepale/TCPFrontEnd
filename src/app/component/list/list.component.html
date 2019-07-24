@@ -1,1 +1,14 @@
-<p>list works!</p>
+<div>
+    <ul *ngIf="channels" class="list-group text-center">
+        <li *ngFor="let channel of channels" class="list-group-item">
+            <span class="badge">#{{channel.channel_name}}</span>
+        </li>
+    </ul>
+
+    <ul *ngIf="dms" class="list-group text-center">
+        <li *ngFor="let dm of dms" class="list-group-item">
+            <span class="badge">#{{dm.username}}</span>
+        </li>
+    </ul>
+
+</div>

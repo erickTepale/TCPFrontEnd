@@ -6,6 +6,7 @@ import { NavComponent } from './component/nav/nav.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'nav', component: NavComponent }
 ];
 
