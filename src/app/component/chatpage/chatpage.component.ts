@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from 'src/app/classes/message';
 import { User } from 'src/app/classes/User';
-//import { DirectMessageService } from 'src/app/services/chat.service';
+import { DirectMessageService } from 'src/app/services/chat.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,24 +14,28 @@ export class ChatpageComponent implements OnInit {
   messages: Message[];
   allUser: User[];
   fromId = 2;
+  dataRefresher: any;
+  messageBody: string;
 
-  constructor(//private directMessageService: DirectMessageService,
+
+  constructor(private directMessageService: DirectMessageService,
               private loginService: LoginService,
               private userService: UserService) { }
 
   ngOnInit() {
-    //this.getDMdata();
+    this.getDMdata();
     this.getUserdata();
+    this.refreshData();
   }
 
-  // getDMdata() {
-  //   this.directMessageService.getData(this.loginService.currentUser.user_id, this.fromId).subscribe(
-  //     data => {
-  //       this.messages = data;
-  //     }
-  //   );
+  getDMdata() {
+    this.directMessageService.getData(this.loginService.currentUser.user_id, this.fromId).subscribe(
+      data => {
+        this.messages = data;
+      }
+    );
 
-  // }
+  }
 
   getUserdata() {
     this.userService.getAllUserData().subscribe(
@@ -42,11 +46,17 @@ export class ChatpageComponent implements OnInit {
     );
   }
 
-  // onKeyDown(event: any) {
-  //   if (event.key === 'Enter') {
-  //     this.directMessageService.postMessage(
-  //       this.loginService.currentUser.user_id, this.fromId, event.target.value);
-  //     event.target.value = '';
-  //   }
-  // }
+  onClick(event: any) {
+      this.directMessageService.postMessage(
+        this.loginService.currentUser.user_id, this.fromId, this.messageBody);
+      this.messageBody = '';
+  }
+
+  refreshData() {
+    this.dataRefresher =
+      setInterval(() => {
+        this.getDMdata();
+        //Passing the false flag would prevent page reset to 1 and hinder user interaction
+      }, 30000);
+  }
 }

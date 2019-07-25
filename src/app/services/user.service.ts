@@ -3,6 +3,15 @@ import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/htt
 import { Observable, of } from 'rxjs';
 import { User } from '../classes/User';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Access-Control-Allow-Origin' : '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    'Content-Type': 'application/json'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,14 +24,14 @@ export class UserService {
   getUserData(id: number): Observable<User> {
     const address = 'http://localhost:8080/user/id/' + id;
 
-    return this.http.get<User>(address);
+    return this.http.get<User>(address, httpOptions);
 
   }
 
   getAllUserData(): Observable<User[]> {
     const address = 'http://localhost:8080/user';
 
-    return this.http.get<User[]>(address);
+    return this.http.get<User[]>(address, httpOptions);
 
   }
 }
