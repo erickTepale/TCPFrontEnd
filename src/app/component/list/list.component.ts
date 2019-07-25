@@ -24,13 +24,13 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
       this.listChan();
-  }
+   }
 
   listChan(){
     console.log("inside listChan");
     this.cmService.getChannelList()
       .subscribe(channels =>
-        {
+        { 
           console.log(channels);
           this.channels = channels;
         }

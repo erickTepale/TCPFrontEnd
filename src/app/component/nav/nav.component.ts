@@ -43,6 +43,7 @@ export class NavComponent implements OnInit {
     //updates the service display for nav
     this.navService.selected = "dm";
 
+
     // updates the heading display
     this.location = "#Direct Messages";
 
@@ -51,6 +52,10 @@ export class NavComponent implements OnInit {
 
     //changes button colors
     this.changeColor("dm");
+  }
+  
+  goCM() {
+    this.router.navigate(['CM']);
   }
 
   changeColor(value:string){
@@ -62,6 +67,7 @@ export class NavComponent implements OnInit {
       document.getElementById("chan").className = "btn btn-secondary btn-lg";
     }
   }
+
   goDM() {
     this.router.navigate(['DM']);
     console.log('?');
