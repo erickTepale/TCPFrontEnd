@@ -3,6 +3,8 @@ import { CmListService } from '../../services/cm-list.service';
 import { DmListService } from '../../services/dm-list.service';
 import { NavService } from '../../services/nav.service';
 import { Channel } from 'src/app/classes/Channel';
+import { CmChatService } from 'src/app/services/cm-chat.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -15,7 +17,9 @@ export class ListComponent implements OnInit {
   constructor(
     private cmService: CmListService,
     private dmService: DmListService,
-    private navService: NavService
+    private navService: NavService,
+    private cmChatService: CmChatService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -34,6 +38,13 @@ export class ListComponent implements OnInit {
   }
   listDM(){
     console.log("inside listDM");
+  }
+
+  channelClick(channel:Channel){
+    //inject channelID into the channel service
+    console.log(channel.channel_id);
+    this.cmChatService.channel = channel;
+    this.router.navigate(['CM']);
   }
 
 }
