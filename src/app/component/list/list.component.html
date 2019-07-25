@@ -1,6 +1,6 @@
 <div>
     <ul *ngIf="channels" class="list-group text-center">
-        <li *ngFor="let channel of channels" class="list-group-item">
+        <li *ngFor="let channel of channels" (click)="channelClick(channel)" class="list-group-item">
             <span class="badge">#{{channel.channel_name}}</span>
         </li>
     </ul>
