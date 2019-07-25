@@ -1,8 +1,8 @@
 <!-- Header -->
 <div class="container">
-    <div class="jumbotron">
-        <h1>#Channel or Direct Message LIst ?</h1>
-        <h2>Channel Name</h2>
+    <div class="jumbotron text-center">
+        <h3>Gott.it</h3>
+        <h4>{{location}}</h4>
     </div>
 </div>
 
@@ -14,6 +14,12 @@
 
 
 <div class="fixed-bottom text-center">
+<!-- <<<<<<< HEAD
     <button #channels type="button" class="btn btn-primary btn-lg" (click)="goCM()">Channels</button>
     <button type="button" class="btn btn-secondary btn-lg" (click)="goDM()">Direct Message</button>
+======= -->
+     <!-- <div (click)="toggleHighlight(1);" [ngClass]="{'my-class': highlightedDiv === 1}"></div> -->
+    <button id="chan" #chan (click)="toChan()" type="button" class="btn btn-primary btn-lg" >Channels</button>
+    <button id="dm" #dm (click)="toDM()" type="button" class="btn btn-secondary btn-lg">Direct Message</button>
+
 </div>

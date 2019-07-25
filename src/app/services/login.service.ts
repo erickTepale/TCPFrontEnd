@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { CurrentUser } from '../classes/CurrentUser';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -12,7 +13,6 @@ const httpOptions = {
     'Content-Type': 'application/json'
   }
   )
-
 };
 
 @Injectable({
@@ -28,8 +28,8 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   getData(username:string): Observable<CurrentUser[]>{
-    console.log("inside loginService -> getData");
-    let address:string = "http://localhost:8080/user/" + username;
+    console.log(environment.apiURL);
+    let address:string = environment.apiURL + "/user/" + username;
     return this.http.get<CurrentUser[]>(address, httpOptions);
   }
 

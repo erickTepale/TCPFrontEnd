@@ -7,5 +7,6 @@ export const environment = {
     projectId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     storageBucket: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     messagingSenderId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  }
+  },
+  apiURL: "https://belle-maison-41978.herokuapp.com/"
 };

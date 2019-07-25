@@ -17,7 +17,7 @@ export class CmChatpageComponent implements OnInit {
   ngOnInit() {
     this.getCMdata();
   }
-getCMdata(){this.cmService.getData(this.channel.channelId).subscribe(
+getCMdata(){this.cmService.getData().subscribe(
   data => {
     this.messages = data;
     console.log(this.messages);
@@ -27,7 +27,7 @@ getCMdata(){this.cmService.getData(this.channel.channelId).subscribe(
 onKeyDown(event: any) {
   if (event.key === 'Enter') {
     this.cmService.postMessage(
-      this.loginService.currentUser.user_id, this.channel.channelId, event.target.value);
+      this.loginService.currentUser.user_id, event.target.value);
     event.target.value = '';
   }
 }
