@@ -13,6 +13,10 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
+  goCM() {
+    this.router.navigate(['CM']);
+  }
+
   goDM() {
     this.router.navigate(['DM']);
     console.log('?');
