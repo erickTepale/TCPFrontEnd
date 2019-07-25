@@ -52,8 +52,6 @@ export class NavComponent implements OnInit {
 
     //changes button colors
     this.changeColor("dm");
-
-    this.router.navigate(['dm']);
   }
   
   goCM() {

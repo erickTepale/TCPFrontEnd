@@ -5,8 +5,8 @@
         </li>
     </ul>
 
-    <ul *ngIf="dms" class="list-group text-center">
-        <li *ngFor="let dm of dms" class="list-group-item">
+    <ul *ngIf="users" class="list-group text-center">
+        <li *ngFor="let dm of users" (click)="userClick(dm)" class="list-group-item">
             <span class="badge">#{{dm.username}}</span>
         </li>
     </ul>
