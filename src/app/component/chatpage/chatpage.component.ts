@@ -14,6 +14,9 @@ export class ChatpageComponent implements OnInit {
   messages: Message[];
   allUser: User[];
   fromId = 2;
+  dataRefresher: any;
+  messageBody: string;
+
 
   constructor(private directMessageService: DirectMessageService,
               private loginService: LoginService,
@@ -22,6 +25,7 @@ export class ChatpageComponent implements OnInit {
   ngOnInit() {
     this.getDMdata();
     this.getUserdata();
+    this.refreshData();
   }
 
   getDMdata() {
@@ -42,11 +46,17 @@ export class ChatpageComponent implements OnInit {
     );
   }
 
-  onKeyDown(event: any) {
-    if (event.key === 'Enter') {
+  onClick(event: any) {
       this.directMessageService.postMessage(
-        this.loginService.currentUser.user_id, this.fromId, event.target.value);
-      event.target.value = '';
-    }
+        this.loginService.currentUser.user_id, this.fromId, this.messageBody);
+      this.messageBody = '';
+  }
+
+  refreshData() {
+    this.dataRefresher =
+      setInterval(() => {
+        this.getDMdata();
+        //Passing the false flag would prevent page reset to 1 and hinder user interaction
+      }, 30000);
   }
 }

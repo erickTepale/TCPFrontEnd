@@ -27,8 +27,9 @@
 <!-- Where to type messages ! -->
 
 <div class="container-fluid input-group fixed-bottom padding-bottom">
-    <textarea class="form-control z-depth-1" id="message" rows="3" placeholder="Write something here..."></textarea>
+    <textarea class="form-control z-depth-1" id="message" rows="3" placeholder="Write something here..." 
+    [(ngModel)]="messageBody"></textarea>
     <button type="button" class="input-group-addon btn btn-primary btn-xlarge" id="submit"
-        placeholder="Send">Send</button>
+        placeholder="Send" (click)="onClick()">Send</button>
 
 </div>

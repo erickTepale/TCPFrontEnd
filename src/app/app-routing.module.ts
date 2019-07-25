@@ -8,7 +8,8 @@ import { ChatpageComponent } from './component/chatpage/chatpage.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent},
-  { path: 'nav', component: NavComponent }
+  { path: 'nav', component: NavComponent },
+  { path: 'dm', component: ChatpageComponent }
 ];
 
 @NgModule({
