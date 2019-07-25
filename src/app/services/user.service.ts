@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../classes/User';
+import { CurrentUser } from '../classes/CurrentUser';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,10 +29,10 @@ export class UserService {
 
   }
 
-  getAllUserData(): Observable<User[]> {
+  getAllUserData(): Observable<CurrentUser[]> {
     const address = 'http://localhost:8080/user';
 
-    return this.http.get<User[]>(address, httpOptions);
+    return this.http.get<CurrentUser[]>(address, httpOptions);
 
   }
 }

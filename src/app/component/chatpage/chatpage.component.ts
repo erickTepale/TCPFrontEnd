@@ -4,6 +4,7 @@ import { User } from 'src/app/classes/User';
 import { DirectMessageService } from 'src/app/services/chat.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
+import { CurrentUser } from 'src/app/classes/CurrentUser';
 
 @Component({
   selector: 'app-chatpage',
@@ -12,8 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ChatpageComponent implements OnInit {
   messages: Message[];
-  allUser: User[];
-  fromId = 2;
+  allUser: CurrentUser[];
   dataRefresher: any;
   messageBody: string;
 
@@ -29,7 +29,7 @@ export class ChatpageComponent implements OnInit {
   }
 
   getDMdata() {
-    this.directMessageService.getData(this.loginService.currentUser.user_id, this.fromId).subscribe(
+    this.directMessageService.getData(this.loginService.currentUser.user_id).subscribe(
       data => {
         this.messages = data;
       }
@@ -48,7 +48,7 @@ export class ChatpageComponent implements OnInit {
 
   onClick(event: any) {
       this.directMessageService.postMessage(
-        this.loginService.currentUser.user_id, this.fromId, this.messageBody);
+        this.loginService.currentUser.user_id, this.directMessageService.fromUser.user_id, this.messageBody);
       this.messageBody = '';
   }
 

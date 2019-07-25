@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/http';
 import { Message } from '../classes/message';
 import { Observable } from 'rxjs';
+import { User } from '../classes/User';
+import { CurrentUser } from '../classes/CurrentUser';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,12 +19,14 @@ const httpOptions = {
 })
 
 export class DirectMessageService {
+
+  fromUser: CurrentUser = null;
   address = 'http://localhost:8080/DM/';
   messages: Observable<Message[]>;
 
   constructor(private http: HttpClient) { }
-  getData(userId: number, fromId: number) {
-    return this.http.get<Message[]>(this.address + '/' + fromId + '/' + userId);
+  getData(userId: number) {
+    return this.http.get<Message[]>(this.address + this.fromUser.user_id + '/' + userId);
   }
 
   postMessage(fromId: number, toId: number, message: string) {
