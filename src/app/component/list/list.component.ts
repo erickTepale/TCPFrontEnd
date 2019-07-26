@@ -56,7 +56,7 @@ export class ListComponent implements OnInit {
 
   channelClick(channel:Channel){
     //inject channelID into the channel service
-    console.log(channel.channel_id);
+    console.log(channel);
     this.cmChatService.channel = channel;
     this.router.navigate(['CM']);
   }
