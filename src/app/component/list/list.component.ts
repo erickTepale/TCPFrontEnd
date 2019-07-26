@@ -61,11 +61,17 @@ export class ListComponent implements OnInit {
   }
 
   onClick(event: any) {
+    if(this.add===false)
     this.add=true;
-    console.log(this.add);
+    else if(this.add===true)
+    this.add=false;
+    //console.log(this.add);
+
   }
+  
   onClick1(event:any){
 this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this.cpublics);
+
   }
 
   channelClick(channel:Channel){
