@@ -46,7 +46,7 @@ export class ChatpageComponent implements OnInit {
     );
   }
 
-  onClick(event: any) {
+  onClick() { //onClick(event: any) {
       this.directMessageService.postMessage(
         this.loginService.currentUser.user_id, this.directMessageService.fromUser.user_id, this.messageBody);
       this.messageBody = '';
