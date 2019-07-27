@@ -20,10 +20,7 @@ export class NavComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    if(this.loginService.currentUser.user_id == null){
-      this.router.navigate(["login"]);
-    }
-    this.navService;
+
   }
 
   toChan(){
