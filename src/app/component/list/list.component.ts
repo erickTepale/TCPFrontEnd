@@ -9,6 +9,7 @@ import { DirectMessageService } from 'src/app/services/chat.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/classes/User';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-list',
@@ -18,8 +19,13 @@ import { CurrentUser } from 'src/app/classes/CurrentUser';
 export class ListComponent implements OnInit {
   channels:Channel[];
   users: CurrentUser[];
-
+  channel:Channel;
+  channelBody:Channel;
+  add: Boolean = false;
+  cname:string;
+  cpublics:boolean;
   constructor(
+    private loginService:LoginService,
     private cmService: CmListService,
     private dmService: DmListService,
     private navService: NavService,
@@ -54,9 +60,23 @@ export class ListComponent implements OnInit {
     this.channels = null;
   }
 
+  onClick(event: any) {
+    if(this.add===false)
+    this.add=true;
+    else if(this.add===true)
+    this.add=false;
+    //console.log(this.add);
+
+  }
+  
+  onClick1(event:any){
+this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this.cpublics);
+
+  }
+
   channelClick(channel:Channel){
     //inject channelID into the channel service
-    console.log(channel.channel_id);
+    console.log(channel);
     this.cmChatService.channel = channel;
     this.router.navigate(['CM']);
   }

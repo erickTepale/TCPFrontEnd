@@ -1,4 +1,26 @@
 <div>
+
+<!--Add a channel-->
+<div class="container-fluid">
+    <button type="button" class="input-group-addon btn btn-primary btn-xlarge" id="submit"
+        placeholder="Add" (click)="onClick()">(+)</button>
+    <div *ngIf="add"> 
+        <label>Channel Name :</label> 
+        <input [(ngModel)]="cname" placeholder="Channel Name"/>
+    <br><label>Channel Public:    </label> 
+    <label>Yes:
+            <input type="checkbox" [(ngModel)]="cpublics">
+          </label><br/>
+          
+          
+        <!-- <label>Channel Public:    </label> 
+        <input [(ngModel)]="cpublics" placeholder="Yes"/> -->
+        <br>
+        <button type="button" class="input-group-addon btn btn-primary btn-xlarge" id="submit"
+          placeholder="Add" (click)="onClick1()">submit</button>
+    </div>
+    
+        </div>
     <ul *ngIf="channels" class="list-group text-center">
         <li *ngFor="let channel of channels" (click)="channelClick(channel)" class="list-group-item">
             <span class="badge">#{{channel.channel_name}}</span>
