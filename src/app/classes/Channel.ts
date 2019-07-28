@@ -2,12 +2,11 @@ export class Channel{
     channel_id:number;
     channel_name:string;
     user_id:number;
-    publics:number;
+    public:boolean;
 
-    constructor(channel_id:number, channel_name:string, user_id:number, publics:number){
-        this.channel_id = channel_id;
+    constructor(channel_name:string, user_id:number, publics:boolean){
         this.channel_name = channel_name;
         this.user_id = user_id;
-        this.publics = publics;
+        this.public = publics;
     }
 }

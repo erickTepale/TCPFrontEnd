@@ -19,14 +19,16 @@ export class CmChatService {
   channel:Channel = null;
   address = 'http://localhost:8080/channel/';
   messages: Observable<Message[]>;
+
   constructor(private http: HttpClient) { }
   getData() {
-    return this.http.get<Message[]>(this.address + this.channel.channel_id);
+    return this.http.get<Message[]>(this.address + this.channel.channel_id, httpOptions);
   }
   postMessage(fromId: number, message: string) {
     const toSend = new Message();
     toSend.userId = fromId;
     toSend.message = message;
+    console.log(toSend);
     this.http.post(this.address + this.channel.channel_id, toSend, httpOptions).subscribe(response => console.log(response));
   }
 }
