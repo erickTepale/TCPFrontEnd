@@ -29,7 +29,7 @@ export class LoginService {
 
   getData(username:string): Observable<CurrentUser[]>{
     console.log(environment.apiURL);
-    let address:string = environment.apiURL + "/user/" + username;
+    let address:string = environment.apiURL + "user/" + username;
     return this.http.get<CurrentUser[]>(address, httpOptions);
   }
 
