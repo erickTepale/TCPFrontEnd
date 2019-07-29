@@ -4,6 +4,7 @@ import {LoginService} from 'src/app/services/login.service';
 import { CmChatService } from 'src/app/services/cm-chat.service';
 import { User } from 'src/app/classes/User';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
+import { Socket1Service } from 'src/app/services/socket1.service';
 @Component({
   selector: 'app-cm-chatpage',
   templateUrl: './cm-chatpage.component.html',
@@ -16,11 +17,13 @@ export class CmChatpageComponent implements OnInit {
   messageBody: string;
 
   constructor(private cmService:CmChatService,
-              private loginService:LoginService) { }
+              private loginService:LoginService,
+              private socket:Socket1Service) { }
 
   ngOnInit() {
     this.getCMdata();
-    this.refreshData();
+    this.socket.initializeWebSocketConnection();
+    // this.refreshData();
   }
 getCMdata(){this.cmService.getData().subscribe(
   data => {
