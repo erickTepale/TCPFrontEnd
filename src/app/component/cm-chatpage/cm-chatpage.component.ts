@@ -35,11 +35,11 @@ getCMdata(){this.cmService.getData().subscribe(
   }
 );
 }
-onClick(event: any) {
+onClick() {
   
   this.cmService.postMessage(
     this.loginService.currentUser.user_id, this.messageBody);
-  //this.messageBody = '';
+  this.messageBody = '';
 }
 
 getAllUsers(){

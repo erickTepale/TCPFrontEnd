@@ -13,7 +13,7 @@ export class Socket1Service {
   constructor(
 
   ) { 
-    this.initializeWebSocketConnection();
+    //this.initializeWebSocketConnection();
   }
 
   initializeWebSocketConnection(){

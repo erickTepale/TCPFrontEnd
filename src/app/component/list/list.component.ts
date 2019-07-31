@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
     this.channels = null;
   }
 
-  onClick(event: any) {
+  onClick() {
     if(this.add===false)
     this.add=true;
     else if(this.add===true)
@@ -78,7 +78,7 @@ export class ListComponent implements OnInit {
     this.show = true;
   }
 
-  onClick1(event:any){
+  onClick1(){
 this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this.cpublics);
 
   }

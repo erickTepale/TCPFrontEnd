@@ -4,7 +4,7 @@ import { Message } from '../classes/message';
 import { Observable } from 'rxjs';
 import { Channel } from '../classes/Channel';
 import { Socket1Service } from './socket1.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
