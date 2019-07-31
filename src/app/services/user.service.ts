@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/htt
 import { Observable, of } from 'rxjs';
 import { User } from '../classes/User';
 import { CurrentUser } from '../classes/CurrentUser';
+import { environment } from 'src/environments/environment.prod';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,14 +24,14 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUserData(id: number): Observable<User> {
-    const address = 'http://localhost:8080/user/id/' + id;
+    const address = environment.apiURL + 'user/id/' + id;
 
     return this.http.get<User>(address, httpOptions);
 
   }
 
   getAllUserData(): Observable<CurrentUser[]> {
-    const address = 'http://localhost:8080/user';
+    const address = environment.apiURL + 'user';
 
     return this.http.get<CurrentUser[]>(address, httpOptions);
 

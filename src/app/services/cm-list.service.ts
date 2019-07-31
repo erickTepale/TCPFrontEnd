@@ -23,7 +23,7 @@ const httpOptions = {
 })
 export class CmListService {
   channel: Channel;
-  address = 'http://localhost:8080/channel/';
+  address = environment.apiURL + 'channel/';
   uc: UserChannel ;
 
   constructor(

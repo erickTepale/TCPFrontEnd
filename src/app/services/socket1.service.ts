@@ -10,7 +10,9 @@ export class Socket1Service {
   private url:string = "http://localhost:8080/socket";
   private messages:Message[]; 
   private stompClient;
-  constructor() { 
+  constructor(
+
+  ) { 
     this.initializeWebSocketConnection();
   }
 
@@ -19,11 +21,12 @@ export class Socket1Service {
     this.stompClient = Stomp.over(ws);
     let that = this;
     this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe("/chat", (message) => {
+      that.stompClient.subscribe("/chat/message", (message) => {
         // if(message.body) {
         //   $(".chat").append("<div class='message'>"+message.body+"</div>")
         //   console.log(message.body);
         // }
+        console.log("from other user tho");
         console.log(message);
       });
     });
@@ -31,6 +34,7 @@ export class Socket1Service {
 
   sendMessage(message){
     this.stompClient.send("/app/send/message" , {}, message);
+    console.log("scraaa");
     
   }
 }
