@@ -37,15 +37,15 @@ export class LoginComponent implements OnInit {
 
         document.cookie = 'user_id=' + this.loginService.currentUser.user_id + ';';
         document.cookie = 'username=' + this.loginService.currentUser.username + ';';
-
-
-
-
         this.router.navigate(['nav']);
       }
     }
 
   }
+  onClick(){
+    this.router.navigate(['register']);
+  }
+
 
   retrieveLoginData(username: string, password: string){
     this.loginService.getData(username)
