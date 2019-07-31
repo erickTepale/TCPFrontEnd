@@ -4,13 +4,13 @@
     height: 100vh;
 } */
 
-/* #bg{
-    background-image:    url("../../images/light1.jpg");
+#bg{
+    background-image:    url("../../images/bird1.jpg");
     background-size:     cover; 
     width: 100%;                    
     background-repeat:   no-repeat;
     background-position: center center;            
-} */
+}
   
 
 .vertical-center {

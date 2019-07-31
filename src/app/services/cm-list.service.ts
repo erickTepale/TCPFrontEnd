@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { LoginService } from './login.service';
 import { Channel } from '../classes/Channel';
 import { ChannelPK } from '../classes/ChannelPk';
+import {UserChannel} from '../classes/UserChannel';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -21,6 +22,10 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CmListService {
+  channel: Channel;
+  address = environment.apiURL + 'channel/';
+  uc: UserChannel ;
+
   constructor(
     private http:HttpClient,
     private loginService:LoginService
@@ -33,6 +38,24 @@ export class CmListService {
       return this.http.get<Channel[]>(address, httpOptions);
     }
 
+    postChannel(fromId:number,channelName:string,ispublic:boolean)
+  {
+    const toSend = new Channel(channelName,fromId,ispublic);
+    console.log(toSend);
+      this.http.post<Channel>(this.address,toSend,httpOptions).subscribe(response=>
+        {
+          console.log(response);
+          this.channel = response;
+          this.addAdmin(this.loginService.currentUser.user_id,this.channel);
+        });
+
+    }
+
+    addAdmin(fromId:number,channel:Channel){
+      this.uc= new UserChannel(fromId,channel.channel_id);
+      this.http.post(this.address+"channelusers",this.uc,httpOptions).
+      subscribe(response=>console.log(response));
+    }
     pushArray(){
 
     }

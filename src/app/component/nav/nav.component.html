@@ -1,25 +1,19 @@
 <!-- Header -->
-<div class="container">
-    <div class="jumbotron text-center">
+<div class="container jt">
+    <div class="jumbotron text-center text-white">
         <h3>Gott.it</h3>
         <h4>{{location}}</h4>
     </div>
 </div>
 
 <!-- List of channels/messages -->
-<div class="container-fluid">
+<div class="container-fluid list-extend">
     <!-- place list here ! -->
-    <app-list></app-list>
+    <app-list></app-list> 
 </div>
 
 
 <div class="fixed-bottom text-center">
-<!-- <<<<<<< HEAD
-    <button #channels type="button" class="btn btn-primary btn-lg" (click)="goCM()">Channels</button>
-    <button type="button" class="btn btn-secondary btn-lg" (click)="goDM()">Direct Message</button>
-======= -->
-     <!-- <div (click)="toggleHighlight(1);" [ngClass]="{'my-class': highlightedDiv === 1}"></div> -->
     <button id="chan" #chan (click)="toChan()" type="button" class="btn btn-primary btn-lg" >Channels</button>
     <button id="dm" #dm (click)="toDM()" type="button" class="btn btn-secondary btn-lg">Direct Message</button>
-
 </div>
