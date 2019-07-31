@@ -2,35 +2,38 @@
     1. #Direct-Message OR #Channel
     2. To {{username}} OR {{channelname}}
 -->
-<div class="container">
-        <div class="jumbotron">
-            <h1>Channel-Message</h1>
-            <h2>#ChannelName</h2>
-        </div>
+<div class="container jt">
+    <div class="jumbotron text-center text-white bg-transparent">
+        <h1>Channel-Message</h1>
+        <h2>#ChannelName</h2>
     </div>
-    
-   
+</div>
+
+
 <!-- Where Messages appear -->
-<div class="container-fluid">
-        <div class="card" *ngFor="let message of messages">
-                <div class="card-body">
-                  <div class="card-title" *ngIf='allUser'>{{allUser[message.userId-1].username}}</div>
-                <div class="card-text">{{message.message}}</div>
-                </div>
-              
-                <div class="card-subtitle">
-                  {{message.time}}
-                </div>
+<div class="container-fluid list-extend">
+    <div class="card bg-transparent text-white rounded-pill" *ngFor="let message of messages">
+        <div class="card-body ">
+            <div class="row">
+                <div class="card-title start" *ngIf='allUser'>{{allUser[message.userId-1].username}}</div>
+                <div class="card-subtitle text-right ml-auto end">{{message.time}}</div>
+            </div>
+            <div class="card-text">{{message.message}}</div>
+
         </div>
 
-</div>
-    <!-- Where to type messages ! -->
-    
-    <div class="container-fluid input-group fixed-bottom padding-bottom">
-        <textarea class="form-control z-depth-1" id="message" rows="3" placeholder="Write something here..."
-            [(ngModel)]="messageBody"></textarea>
-            <button type="button" class="input-group-addon btn btn-primary btn-xlarge" id="submit"
-            placeholder="Send" (click)="onClick()">Send</button>
-    
-    
+
     </div>
+
+</div>
+
+<!-- Where to type messages ! -->
+
+<div class="container-fluid input-group fixed-bottom padding-bottom">
+    <textarea class="form-control z-depth-1" id="message" rows="3" placeholder="Write something here..."
+        [(ngModel)]="messageBody"></textarea>
+    <button type="button" class="input-group-addon btn btn-primary btn-xlarge" id="submit" placeholder="Send"
+        (click)="onClick()">Send</button>
+
+
+</div>

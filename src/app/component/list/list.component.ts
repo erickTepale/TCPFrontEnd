@@ -22,6 +22,7 @@ export class ListComponent implements OnInit {
   channel:Channel;
   channelBody:Channel;
   add: Boolean = false;
+  show: Boolean = true;
   cname:string;
   cpublics:boolean;
   constructor(
@@ -68,7 +69,15 @@ export class ListComponent implements OnInit {
     //console.log(this.add);
 
   }
+
+  hideButton(){
+    this.show = false;
+  }
   
+  showButton(){
+    this.show = true;
+  }
+
   onClick1(event:any){
 this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this.cpublics);
 

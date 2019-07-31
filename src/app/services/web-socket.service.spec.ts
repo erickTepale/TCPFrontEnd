@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DirectMessageService } from './chat.service';
+import { WebSocketService } from './web-socket.service';
 
-describe('DirectMessageService', () => {
+describe('WebSocketService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DirectMessageService = TestBed.get(DirectMessageService);
+    const service: WebSocketService = TestBed.get(WebSocketService);
     expect(service).toBeTruthy();
   });
 });

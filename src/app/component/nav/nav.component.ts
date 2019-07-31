@@ -35,11 +35,13 @@ export class NavComponent implements OnInit {
     
     //change button colors
     this.changeColor("chan");
+
+    //show add channel button
+    this.listComponent.showButton();
   }
   toDM(){
     //updates the service display for nav
     this.navService.selected = "dm";
-
 
     // updates the heading display
     this.location = "#Direct Messages";
@@ -49,6 +51,9 @@ export class NavComponent implements OnInit {
 
     //changes button colors
     this.changeColor("dm");
+
+    //hide add channels
+    this.listComponent.hideButton();
   }
   
   goCM() {
