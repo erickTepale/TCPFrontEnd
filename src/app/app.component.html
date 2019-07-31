@@ -1,5 +1,10 @@
 <div class="container">
-
+    <div class="fixed-top">
+        <div class="container-fluid fixed-top padding-right" style="background-color: aliceblue">
+            {{username}}
+            <button id="logoutbtn" type="button" (click)="logout()">Logout</button>
+        </div>
+    </div>
     <router-outlet></router-outlet>
 </div>
 <!-- </div> -->
