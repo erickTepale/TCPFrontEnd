@@ -26,7 +26,7 @@ export class CmChatService {
     private http: HttpClient,
     private socket: Socket1Service
   ) { }
-  getData() {
+  getData():Observable<Message[]> {
     return this.http.get<Message[]>(this.address + this.channel.channel_id, httpOptions);
   }
   postMessage(fromId: number, message: string){

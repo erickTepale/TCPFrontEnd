@@ -5,6 +5,7 @@ import { DirectMessageService } from 'src/app/services/chat.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chatpage',
@@ -25,7 +26,7 @@ export class ChatpageComponent implements OnInit {
   ngOnInit() {
     this.getDMdata();
     this.getUserdata();
-    this.refreshData();
+    //this.refreshData();
   }
 
   getDMdata() {
