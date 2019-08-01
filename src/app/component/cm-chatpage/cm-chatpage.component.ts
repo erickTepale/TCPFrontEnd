@@ -19,13 +19,13 @@ export class CmChatpageComponent implements OnInit {
 
   constructor(private cmService:CmChatService,
               private loginService:LoginService,
-              private socket:Socket1Service,
+              // private socket:Socket1Service,
               private userService:UserService) { }
 
   ngOnInit() {
     this.getCMdata();
     this.getAllUsers();
-    this.socket.initializeWebSocketConnection();
+    //this.socket.initializeWebSocketConnection();
     // this.refreshData();
   }
 getCMdata(){this.cmService.getData().subscribe(
