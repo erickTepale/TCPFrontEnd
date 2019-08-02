@@ -29,7 +29,7 @@ export class CmChatService {
   getData():Observable<Message[]> {
     return this.http.get<Message[]>(this.address + this.channel.channel_id, httpOptions);
   }
-  postMessage(fromId: number, message: string){
+  postMessage(fromId: number, message: string):Observable<Message>{
     const toSend = new Message();
     let created = new Message();
     toSend.userId = fromId;
@@ -38,13 +38,14 @@ export class CmChatService {
 
    // this.http.post(this.address + this.channel.channel_id+"/message", toSend, httpOptions).subscribe(response => console.log(response));
 
-     this.http.post<Message>(this.address + this.channel.channel_id + "/message", toSend, httpOptions)
-      .subscribe(response => {
-        console.log(response);
-        // created = response;
-        // this.socket.sendMessage(created);
-      });
-    
+    return this.http.post<Message>(this.address + this.channel.channel_id + "/message", toSend, httpOptions);
+      // .subscribe(response => {
+      //   console.log(response);
+      //    created = response;
+      //   // this.socket.sendMessage(created);
+      
+      // });
 
+      
   }
 }
