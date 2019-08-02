@@ -1,1 +1,19 @@
-<p>register works!</p>
+<div id="bg" class="container-fluid text-center">
+
+    <div class="container-fluid vertical-center d-flex flex-column justify-content-center">
+<form>
+    <div class="form-group">
+        <input #username type="text" class="form-control" id="username" placeholder="Username">
+    </div>
+
+    <div class="form-group">
+        <input #password1 type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <input #password2 type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-type Password">
+    </div>
+    <input (click)="register(username.value, password1.value,password2.value)" type="button" class="btn btn-primary form-control"
+                value="Register"> 
+</form>
+    </div>
+</div>
