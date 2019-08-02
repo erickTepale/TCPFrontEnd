@@ -36,6 +36,9 @@ export class CmChatService {
     toSend.userId = fromId;
     toSend.message = message;
     console.log(toSend);
+
+   // this.http.post(this.address + this.channel.channel_id+"/message", toSend, httpOptions).subscribe(response => console.log(response));
+
      this.http.post<Message>(this.address + this.channel.channel_id + "/message", toSend, httpOptions)
       .subscribe(response => {
         console.log(response);
@@ -43,5 +46,6 @@ export class CmChatService {
         // this.socket.sendMessage(created);
       });
     
+
   }
 }
