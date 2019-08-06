@@ -50,6 +50,11 @@ export class CmListService {
         });
 
     }
+    
+    addUser(user_id:number,channel:Channel){
+      this.uc= new UserChannel(user_id,channel.channel_id);
+      this.http.post(this.address+"channelusers",this.uc,httpOptions).subscribe(response=>console.log(response));
+    }
 
     addAdmin(fromId:number,channel:Channel){
       this.uc= new UserChannel(fromId,channel.channel_id);

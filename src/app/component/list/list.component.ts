@@ -11,13 +11,14 @@ import { CurrentUser } from 'src/app/classes/CurrentUser';
 import { LoginService } from 'src/app/services/login.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDialog,MatDialogConfig, MatTableDataSource} from "@angular/material";
-
+import {UserService} from 'src/app/services/user.service';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
+  listUsers:CurrentUser[];
   channels:Channel[];
   users: CurrentUser[];
   channel:Channel;
@@ -26,6 +27,7 @@ export class ListComponent implements OnInit {
   show: Boolean = true;
   cname:string;
   cpublics:boolean;
+  showSignInModal:boolean;
   constructor(
     private loginService:LoginService,
     private cmService: CmListService,
@@ -34,6 +36,7 @@ export class ListComponent implements OnInit {
     private cmChatService: CmChatService,
     private dmChatService: DirectMessageService,
     private router:Router,
+    private userService:UserService
     //private dialog:MatDialog 
   ) { }
 
@@ -82,7 +85,7 @@ export class ListComponent implements OnInit {
   }
 
   onClick1(){
-this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this.cpublics);
+  this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this.cpublics);
 
   }
 
@@ -98,8 +101,6 @@ this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this
     this.dmChatService.fromUser = user;
     this.router.navigate(['DM']);
   }
- onCreate(){
-   
- }
+
 
 }
