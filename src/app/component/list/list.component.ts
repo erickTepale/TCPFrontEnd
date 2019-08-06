@@ -5,11 +5,12 @@ import { NavService } from '../../services/nav.service';
 import { Channel } from 'src/app/classes/Channel';
 import { CmChatService } from 'src/app/services/cm-chat.service';
 import { DirectMessageService } from 'src/app/services/chat.service';
-
 import { Router } from '@angular/router';
 import { User } from 'src/app/classes/User';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
 import { LoginService } from 'src/app/services/login.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialog,MatDialogConfig, MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-list',
@@ -32,8 +33,10 @@ export class ListComponent implements OnInit {
     private navService: NavService,
     private cmChatService: CmChatService,
     private dmChatService: DirectMessageService,
-    private router:Router
+    private router:Router,
+    //private dialog:MatDialog 
   ) { }
+
 
   ngOnInit() {
       this.listChan();
@@ -95,5 +98,8 @@ this.cmService.postChannel(this.loginService.currentUser.user_id,this.cname,this
     this.dmChatService.fromUser = user;
     this.router.navigate(['DM']);
   }
+ onCreate(){
+   
+ }
 
 }
