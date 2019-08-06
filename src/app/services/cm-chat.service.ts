@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders, HttpHeaderResponse } from '@angular/common/htt
 import { Message } from '../classes/message';
 import { Observable } from 'rxjs';
 import { Channel } from '../classes/Channel';
-import { Socket1Service } from './socket1.service';
-import { environment } from 'src/environments/environment.prod';
+//import { Socket1Service } from './socket1.service';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,14 +23,13 @@ export class CmChatService {
   messages: Observable<Message[]>;
 
   constructor(
-    private http: HttpClient,
-    private socket: Socket1Service
+    private http: HttpClient
+    //private socket: Socket1Service
   ) { }
-  getData() {
+  getData():Observable<Message[]> {
     return this.http.get<Message[]>(this.address + this.channel.channel_id, httpOptions);
   }
-  postMessage(fromId: number, message: string){
-
+  postMessage(fromId: number, message: string):Observable<Message>{
     const toSend = new Message();
     let created = new Message();
     toSend.userId = fromId;
@@ -39,13 +38,14 @@ export class CmChatService {
 
    // this.http.post(this.address + this.channel.channel_id+"/message", toSend, httpOptions).subscribe(response => console.log(response));
 
-     this.http.post<Message>(this.address + this.channel.channel_id + "/message", toSend, httpOptions)
-      .subscribe(response => {
-        console.log(response);
-        // created = response;
-        // this.socket.sendMessage(created);
-      });
-    
+    return this.http.post<Message>(this.address + this.channel.channel_id + "/message", toSend, httpOptions);
+      // .subscribe(response => {
+      //   console.log(response);
+      //    created = response;
+      //   // this.socket.sendMessage(created);
+      
+      // });
 
+      
   }
 }

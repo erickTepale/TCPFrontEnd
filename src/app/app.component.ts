@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'TCPFrontEnd';
+  username:string = this.loginService.currentUser.username;
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -36,5 +37,14 @@ export class AppComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  logout() {
+    document.cookie = 'user=;';
+    document.cookie = 'username=;';
+    this.loginService.currentUser.user_id = null;
+    this.loginService.currentUser.username = null;
+    this.router.navigate(['login']);
+
   }
 }

@@ -19,13 +19,13 @@ export class CmChatpageComponent implements OnInit {
 
   constructor(private cmService:CmChatService,
               private loginService:LoginService,
-              private socket:Socket1Service,
+              // private socket:Socket1Service,
               private userService:UserService) { }
 
   ngOnInit() {
     this.getCMdata();
     this.getAllUsers();
-    this.socket.initializeWebSocketConnection();
+    //this.socket.initializeWebSocketConnection();
     // this.refreshData();
   }
 getCMdata(){this.cmService.getData().subscribe(
@@ -35,11 +35,15 @@ getCMdata(){this.cmService.getData().subscribe(
   }
 );
 }
-onClick(event: any) {
-  
+onClick() {
   this.cmService.postMessage(
-    this.loginService.currentUser.user_id, this.messageBody);
-  //this.messageBody = '';
+    this.loginService.currentUser.user_id, this.messageBody)
+    .subscribe(response => {
+      console.log(response);
+      // this.socket.sendMessage(created);
+      this.messages.push(response);
+    });
+  this.messageBody = '';
 }
 
 getAllUsers(){

@@ -27,14 +27,14 @@ export class DirectMessageService {
 
   constructor(private http: HttpClient) { }
   getData(userId: number) {
-    return this.http.get<Message[]>(environment.apiURL + "/DM" + this.fromUser.user_id + '/' + userId);
+    return this.http.get<Message[]>(environment.apiURL + "/DM/" + this.fromUser.user_id + '/' + userId);
   }
 
-  postMessage(fromId: number, toId: number, message: string) {
+  postMessage(fromId: number, toId: number, message: string){
     const toSend = new Message();
     toSend.userId = fromId;
     toSend.message = message;
-    this.http.post(environment.apiURL + "/DM" + toId,
-    toSend, httpOptions).subscribe(response => console.log(response));
+    return this.http.post<Message>(environment.apiURL + "/DM/" + toId,
+    toSend, httpOptions);//.subscribe(response => console.log(response));
   }
 }
