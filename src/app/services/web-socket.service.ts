@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 // import * as Rx from 'rxjs-compat/Rx';
-import { observable } from 'rxjs';
-import { CmChatService } from './cm-chat.service';
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
+import { environment } from 'src/environments/environment';
+import { Message } from '../classes/message';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +11,20 @@ import { CmChatService } from './cm-chat.service';
 export class WebSocketService {
   // private subject: Rx.Subject<MessageEvent>;
   // private url:string = "http://localhost:8080/incoming";
+  stompClient = null;
 
-  constructor(
-     private cmService:CmChatService
-   ) { }
+  constructor() { }
+
+  getStompClient() {
+    const socket = new SockJS( environment.apiURL + '/chat');
+    this.stompClient = Stomp.over(socket);
+    return this.stompClient;
+  }
+
+  sendMessage(message: Message, toID: number) {
+    this.stompClient.send('/app/chat/' + toID, {}, JSON.stringify(message));
+  }
+
 
   // public connect(): Rx.Subject<MessageEvent>{
   //   if(!this.subject){
