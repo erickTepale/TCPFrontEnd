@@ -1,3 +1,34 @@
+/* The Modal (background) */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 250px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+  }
+  
+  /* Modal Content*/
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 70%;
+    max-width: 150px;
+    background: #343a40;
+    color: #ffffff;
+  }
+  
+  .pop{
+    height: 50vh;
+    width: 75vw;
+    overflow: scroll;
+  }
+  
 .jumbotron{
     background:transparent !important;
     margin-top: 0;
