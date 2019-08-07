@@ -10,6 +10,7 @@ import { User } from 'src/app/classes/User';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
 import { LoginService } from 'src/app/services/login.service';
 import {UserService} from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

@@ -13,6 +13,7 @@ import { AboutComponent } from './component/about/about.component';
 import { NavComponent } from './component/nav/nav.component';
 import { CmChatpageComponent } from './component/cm-chatpage/cm-chatpage.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './component/header/header.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     ListComponent,
     AboutComponent,
     NavComponent,
-    CmChatpageComponent
+    CmChatpageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

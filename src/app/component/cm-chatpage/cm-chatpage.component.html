@@ -10,31 +10,34 @@
 </div>
 
 
-<div>{{ Users}}
+<div class="d-flex flex-row-reverse btn-container">{{ Users}}
     <!-- <popup>Add Users</popup> -->
-    <button  (click)="onCreate()">Users</button>
+    <button class="btn btn-primary text-white" (click)="onCreate()">Users</button>
 </div>
 
 <div id="SigninModal" class="modal" *ngIf="showSignInModal">
-   <div class="modal-content pop">
-     <h2>Users</h2>
-     <label class="form-check-label" for="addUser">Username</label>
-     <!-- <input id="addUser"class="form-control mr-sm-2 loginField" type="search"  placeholder="User" [(ngModel)]="currentUser"> -->
-     <ul *ngIf="listUsers" class="list-group text-center">
-       <li *ngFor="let currentUser of listUsers" (click)="listuserClick(currentUser)" class="list-group-item bg-primary">
-           <span class="badge">#{{currentUser.username}}</span>
-       </li>
-   </ul>
-     <button class="btn btn-outline-danger my-2 my-sm-0" id="exitLoginBtn" type="submit" (click)=changeDisplay() (keydown.esc)= changeDisplay() >Exit</button> 
-   </div>
- </div>
+    <div class="modal-content pop">
+            <button class="btn btn-outline-danger my-2 my-sm-0 float-right exit" id="exitLoginBtn" type="submit" (click)=changeDisplay()
+            (keydown.esc)=changeDisplay()>X</button>
+        <h2 class="text-center">Add Users</h2>
+        
+
+        <!-- <input id="addUser"class="form-control mr-sm-2 loginField" type="search"  placeholder="User" [(ngModel)]="currentUser"> -->
+        <ul *ngIf="listUsers" class="list-group text-center">
+            <li *ngFor="let currentUser of listUsers" (click)="listuserClick(currentUser)"
+                class="list-group-item bg-primary">
+                <span class="badge">#{{currentUser.username}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <!-- Where Messages appear -->
 <div class="container-fluid list-extend">
     <div class="card bg-transparent text-white rounded-pill" *ngFor="let message of messages">
         <div class="card-body ">
             <div class="row">
-               <!-- <div class="card-title start" *ngIf='allUser'>{{allUser[message.userId-1].username}}</div> -->
+                <!-- <div class="card-title start" *ngIf='allUser'>{{allUser[message.userId-1].username}}</div> -->
                 <div class="card-subtitle text-right ml-auto end">{{message.time}}</div>
             </div>
             <div class="card-text">{{message.message}}</div>
@@ -47,7 +50,6 @@
 </div>
 
 <!-- Where to type messages ! -->
-
 <div class="container-fluid input-group fixed-bottom padding-bottom">
     <textarea class="form-control z-depth-1" id="message" rows="3" placeholder="Write something here..."
         [(ngModel)]="messageBody"></textarea>

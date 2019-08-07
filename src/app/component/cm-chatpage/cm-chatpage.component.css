@@ -3,7 +3,7 @@
     display: block;
     position: fixed;
     z-index: 1;
-    padding-top: 250px;
+    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;
@@ -18,11 +18,14 @@
     margin: auto;
     display: block;
     width: 70%;
-    max-width: 150px;
     background: #343a40;
     color: #ffffff;
   }
   
+.exit{
+    margin: auto;
+}
+
   .pop{
     height: 50vh;
     width: 75vw;
@@ -70,5 +73,14 @@
     .card{
         width: 55%;
         margin: auto;
+    }
+
+    .btn-container{
+        width: 50%;
+        margin: auto;
+    }
+    
+    .btn{
+        margin-bottom: 2px;
     }
 }
