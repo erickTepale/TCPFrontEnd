@@ -6,6 +6,8 @@ import { User } from 'src/app/classes/User';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
 import { Socket1Service } from 'src/app/services/socket1.service';
 import { UserService } from 'src/app/services/user.service';
+import { WebSocketService } from 'src/app/services/web-socket.service';
+
 import { CmListService } from 'src/app/services/cm-list.service';
 import { Channel } from 'src/app/classes/Channel';
 @Component({
@@ -19,18 +21,31 @@ export class CmChatpageComponent implements OnInit {
   allUser: CurrentUser[];
   dataRefresher: any;
   messageBody: string;
+  stompClient = null;
+
   showSignInModal:boolean;
   constructor(private cmService:CmChatService,
               private loginService:LoginService,
               private cmLService: CmListService,
               // private socket:Socket1Service,
-              private userService:UserService) { }
+              private userService:UserService,
+              private sockService: WebSocketService
+              ) { }
 
   ngOnInit() {
     this.getCMdata();
     this.getAllUsers();
+    this.stompClient = this.sockService.getStompClient();
+    this.stompClient.connect({}, frame => {
+      console.log('Connected: ' + frame);
+      this.stompClient.subscribe('/channel/' + this.cmService.channel.channel_id, messageOutput => {
+        this.messages.push(JSON.parse(messageOutput.body));
+        console.log(JSON.parse(messageOutput.body) + 'COOL BEANS');
+      });
+  });
     //this.socket.initializeWebSocketConnection();
     // this.refreshData();
+
   }
 getCMdata(){this.cmService.getData().subscribe(
   data => {
@@ -41,12 +56,7 @@ getCMdata(){this.cmService.getData().subscribe(
 }
 onClick() {
   this.cmService.postMessage(
-    this.loginService.currentUser.user_id, this.messageBody)
-    .subscribe(response => {
-      console.log(response);
-      // this.socket.sendMessage(created);
-      this.messages.push(response);
-    });
+    this.loginService.currentUser.user_id, this.messageBody);
   this.messageBody = '';
 }
 

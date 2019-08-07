@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Channel } from '../classes/Channel';
 //import { Socket1Service } from './socket1.service';
 import { environment } from 'src/environments/environment';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,13 +24,14 @@ export class CmChatService {
   messages: Observable<Message[]>;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private sockService: WebSocketService
     //private socket: Socket1Service
   ) { }
   getData():Observable<Message[]> {
     return this.http.get<Message[]>(this.address + this.channel.channel_id, httpOptions);
   }
-  postMessage(fromId: number, message: string):Observable<Message>{
+  postMessage(fromId: number, message: string): void{
     const toSend = new Message();
     let created = new Message();
     toSend.userId = fromId;
@@ -37,8 +39,7 @@ export class CmChatService {
     console.log(toSend);
 
    // this.http.post(this.address + this.channel.channel_id+"/message", toSend, httpOptions).subscribe(response => console.log(response));
-
-    return this.http.post<Message>(this.address + this.channel.channel_id + "/message", toSend, httpOptions);
+    this.sockService.sendMessage(toSend, this.channel.channel_id);
       // .subscribe(response => {
       //   console.log(response);
       //    created = response;
