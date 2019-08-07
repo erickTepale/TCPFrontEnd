@@ -8,20 +8,25 @@ import { Socket1Service } from 'src/app/services/socket1.service';
 import { UserService } from 'src/app/services/user.service';
 import { WebSocketService } from 'src/app/services/web-socket.service';
 
+import { CmListService } from 'src/app/services/cm-list.service';
+import { Channel } from 'src/app/classes/Channel';
 @Component({
   selector: 'app-cm-chatpage',
   templateUrl: './cm-chatpage.component.html',
   styleUrls: ['./cm-chatpage.component.css']
 })
 export class CmChatpageComponent implements OnInit {
+  listUsers:CurrentUser[];
   messages:Message[];
   allUser: CurrentUser[];
   dataRefresher: any;
   messageBody: string;
   stompClient = null;
 
+  showSignInModal:boolean;
   constructor(private cmService:CmChatService,
               private loginService:LoginService,
+              private cmLService: CmListService,
               // private socket:Socket1Service,
               private userService:UserService,
               private sockService: WebSocketService
@@ -69,4 +74,30 @@ refreshData() {
       //Passing the false flag would prevent page reset to 1 and hinder user interaction
     }, 30000);
 }
+
+listUser(){
+  console.log('inside listUser');
+  this.userService.getAllUserData().subscribe(
+    listUsers=>{
+      console.log(listUsers);
+      this.listUsers=listUsers;
+    }
+  );
+
+}
+onCreate(){
+  this.showSignInModal=true;
+  this.userService.getAllUserData();
+  this.listUser();
+}
+listuserClick(currentUser){
+  console.log(currentUser);
+  //this.listUsers=this.userService.getAllUserData
+  this.cmLService.addUser(currentUser.user_id,this.cmService.channel);
+ 
+}
+changeDisplay(){
+ this.showSignInModal=false;
+}
+
 }
