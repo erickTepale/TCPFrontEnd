@@ -13,7 +13,6 @@ import { AboutComponent } from './component/about/about.component';
 import { NavComponent } from './component/nav/nav.component';
 import { CmChatpageComponent } from './component/cm-chatpage/cm-chatpage.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [

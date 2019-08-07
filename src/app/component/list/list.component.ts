@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/classes/User';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
 import { LoginService } from 'src/app/services/login.service';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatDialog,MatDialogConfig, MatTableDataSource} from "@angular/material";
 import {UserService} from 'src/app/services/user.service';
 @Component({
   selector: 'app-list',
