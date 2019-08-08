@@ -33,6 +33,7 @@ export class DirectMessageService {
     return this.http.get<Message[]>(environment.apiURL + "/DM/" + this.fromUser.user_id + '/' + userId);
   }
 
+    // two user talk to each other will send to same address
   postMessage(fromId: number, toId: number, message: string){
     const toSend = new Message();
     toSend.userId = fromId;
