@@ -34,17 +34,14 @@ export class CmListService {
     //:Observable<Channel[]>
     getChannelList():Observable<Channel[]>{
       let address = environment.apiURL + "channel/getById/" + this.loginService.currentUser.user_id;
-      console.log(address);
       return this.http.get<Channel[]>(address, httpOptions);
     }
 
     postChannel(fromId:number,channelName:string,ispublic:boolean)
   {
     const toSend = new Channel(channelName,fromId,ispublic);
-    console.log(toSend);
       this.http.post<Channel>(this.address,toSend,httpOptions).subscribe(response=>
         {
-          console.log(response);
           this.channel = response;
           this.addAdmin(this.loginService.currentUser.user_id,this.channel);
         });
@@ -67,7 +64,6 @@ export class CmListService {
 
     getChannelPKList():Observable<ChannelPK[]>{
       let address:string = environment.apiURL + "channel/userchannels/" + this.loginService.currentUser.user_id;
-      console.log(address);
       return this.http.get<ChannelPK[]>(address, httpOptions);
     }
 }

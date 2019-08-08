@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   login(username: string, password: string){
-    console.log("inside login, username :" + username);
     this.retrieveLoginData(username, password);
   }
 
@@ -29,8 +28,6 @@ export class LoginComponent implements OnInit {
     for (let i = 0; i < this.currentUsers.length; i++){
       
       if (this.currentUsers[i].password == password){
-        console.log("array winner 1 + " + this.currentUsers[i].user_id);
-        console.log("array winner 2 + " + this.currentUsers[i].username);
         //this.actualUser = new CurrentUser(this.currentUsers[i].user_id, this.currentUsers[i].username, null);
         this.loginService.currentUser.user_id = this.currentUsers[i].user_id;
         this.loginService.currentUser.username = this.currentUsers[i].username;
@@ -51,11 +48,7 @@ export class LoginComponent implements OnInit {
     this.loginService.getData(username)
       .subscribe(users => 
         {
-          console.log("observable: ");
-          console.log(users);
           this.currentUsers = users;
-          console.log("inside retrieveLoginData");
-          console.log(this.currentUsers);
           this.validateData(password);
         }
       );
