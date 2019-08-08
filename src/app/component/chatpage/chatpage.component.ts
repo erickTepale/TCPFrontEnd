@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 import { CurrentUser } from 'src/app/classes/CurrentUser';
 import { Observable } from 'rxjs';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 
 @Component({
   selector: 'app-chatpage',
@@ -17,16 +18,36 @@ export class ChatpageComponent implements OnInit {
   allUser: CurrentUser[];
   dataRefresher: any;
   messageBody: string;
-
+  stompClient = null;
 
   constructor(private directMessageService: DirectMessageService,
               private loginService: LoginService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private sockService: WebSocketService
+              ) { }
 
   ngOnInit() {
     this.getDMdata();
     this.getUserdata();
     //this.refreshData();
+    this.stompClient = this.sockService.getStompClient();
+    this.stompClient.connect({}, frame => {
+      console.log('Connected: ' + frame);
+      this.stompClient.subscribe(this.getSubscribeDest()
+      , messageOutput => {
+        this.messages.push(JSON.parse(messageOutput.body));
+        console.log(JSON.parse(messageOutput.body) + 'COOL BEANS');
+      });
+  });
+  }
+
+  getSubscribeDest(): string {
+    if (this.directMessageService.fromUser.user_id < this.loginService.currentUser.user_id) {
+      return '/DM/' + this.directMessageService.fromUser.user_id + '/' + this.loginService.currentUser.user_id;
+    } else {
+      return '/DM/' + this.loginService.currentUser.user_id + '/' + this.directMessageService.fromUser.user_id;
+    }
+
   }
 
   getDMdata() {
@@ -49,8 +70,7 @@ export class ChatpageComponent implements OnInit {
 
   onClick() { //onClick(event: any) {
       this.directMessageService.postMessage(
-        this.loginService.currentUser.user_id, this.directMessageService.fromUser.user_id, this.messageBody)
-          .subscribe(response => this.messages.push(response));
+        this.loginService.currentUser.user_id, this.directMessageService.fromUser.user_id, this.messageBody);
       this.messageBody = '';
   }
 

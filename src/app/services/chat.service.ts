@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../classes/User';
 import { CurrentUser } from '../classes/CurrentUser';
 import { environment } from '../../environments/environment';
+import { WebSocketService } from './web-socket.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,8 +25,10 @@ export class DirectMessageService {
   fromUser: CurrentUser = null;
   // address = 'http://localhost:8080/DM/';
   messages: Observable<Message[]>;
+  socketDest = '/app/Dchat/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private sockService: WebSocketService) { }
   getData(userId: number) {
     return this.http.get<Message[]>(environment.apiURL + "/DM/" + this.fromUser.user_id + '/' + userId);
   }
@@ -34,7 +37,11 @@ export class DirectMessageService {
     const toSend = new Message();
     toSend.userId = fromId;
     toSend.message = message;
-    return this.http.post<Message>(environment.apiURL + "/DM/" + toId,
-    toSend, httpOptions);//.subscribe(response => console.log(response));
+    let destWithId = this.socketDest + toId + '/' + fromId;
+    if (toId > fromId) {
+      destWithId = this.socketDest + fromId + '/' + toId;
+    }
+    this.sockService.sendMessage(destWithId, toSend);
+
   }
 }
