@@ -18,12 +18,10 @@ export class ChatpageComponent implements OnInit {
   allUser: CurrentUser[];
   dataRefresher: any;
   messageBody: string;
-<<<<<<< HEAD
-  userTo:string = null;
 
-=======
+  userTo:string = null;
+  
   stompClient = null;
->>>>>>> 61bbc2b832a38970483d5180500a4c93c1edd6fa
 
   constructor(private directMessageService: DirectMessageService,
               private loginService: LoginService,
