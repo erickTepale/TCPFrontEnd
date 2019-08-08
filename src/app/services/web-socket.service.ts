@@ -21,8 +21,8 @@ export class WebSocketService {
     return this.stompClient;
   }
 
-  sendMessage(message: Message, toID: number) {
-    this.stompClient.send('/app/chat/' + toID, {}, JSON.stringify(message));
+  sendMessage(dest: string, message: Message) {
+    this.stompClient.send(dest, {}, JSON.stringify(message));
   }
 
 
