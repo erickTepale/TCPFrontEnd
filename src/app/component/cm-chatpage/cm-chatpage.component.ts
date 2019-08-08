@@ -22,6 +22,7 @@ export class CmChatpageComponent implements OnInit {
   dataRefresher: any;
   messageBody: string;
   stompClient = null;
+  channel: string = null;
 
   showSignInModal:boolean;
   constructor(private cmService:CmChatService,
@@ -33,6 +34,7 @@ export class CmChatpageComponent implements OnInit {
               ) { }
 
   ngOnInit() {
+    this.channel = this.cmService.channel.channel_name;
     this.getCMdata();
     this.getAllUsers();
     this.stompClient = this.sockService.getStompClient();

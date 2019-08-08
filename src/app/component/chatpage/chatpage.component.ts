@@ -17,6 +17,7 @@ export class ChatpageComponent implements OnInit {
   allUser: CurrentUser[];
   dataRefresher: any;
   messageBody: string;
+  userTo:string = null;
 
 
   constructor(private directMessageService: DirectMessageService,
@@ -24,6 +25,7 @@ export class ChatpageComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit() {
+    this.userTo = this.directMessageService.fromUser.username;
     this.getDMdata();
     this.getUserdata();
     //this.refreshData();
