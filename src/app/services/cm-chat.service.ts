@@ -22,6 +22,7 @@ export class CmChatService {
   channel: Channel = null;
   address =  environment.apiURL + 'channel/';
   messages: Observable<Message[]>;
+  socketDest = '/app/chat/';
 
   constructor(
     private http: HttpClient,
@@ -39,7 +40,8 @@ export class CmChatService {
     console.log(toSend);
 
    // this.http.post(this.address + this.channel.channel_id+"/message", toSend, httpOptions).subscribe(response => console.log(response));
-    this.sockService.sendMessage(toSend, this.channel.channel_id);
+    this.sockService.sendMessage(this.socketDest + this.channel.channel_id, toSend);
+
       // .subscribe(response => {
       //   console.log(response);
       //    created = response;
