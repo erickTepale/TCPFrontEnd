@@ -41,6 +41,7 @@ export class ChatpageComponent implements OnInit {
   });
   }
 
+  // two user talk to each other will subscribe to same address
   getSubscribeDest(): string {
     if (this.directMessageService.fromUser.user_id < this.loginService.currentUser.user_id) {
       return '/DM/' + this.directMessageService.fromUser.user_id + '/' + this.loginService.currentUser.user_id;
