@@ -56,4 +56,10 @@ li{
   .but{
     padding-right: 25%;
   }
+
+  .btn-container{
+    width: 50%;
+    margin: auto;
+}
+
 }
