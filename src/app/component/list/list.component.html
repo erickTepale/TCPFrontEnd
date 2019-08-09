@@ -1,9 +1,32 @@
 <div class="container-fluid bg">
     <app-header></app-header>
-                  
-                 
+
     <!--Add a channel-->
-    <div *ngIf="show" class="container-fluid text-right but">
+    <div class="d-flex flex-row-reverse btn-container">
+        <button class="btn btn-primary text-white" (click)="addChannelPop()">(+)</button>
+    </div>
+
+    <!-- popup for adding channel -->
+    <div id="ChannelModal" class="modal" *ngIf="showChannelModal">
+        <div class="modal-content pop">
+            <button class="btn btn-outline-danger my-2 my-sm-0 float-right exit" id="exitLoginBtn" type="submit"
+                (click)=changeDisplay() (keydown.esc)=changeDisplay()>X</button>
+            <h2 class="text-center">Channels</h2>
+
+            <input [(ngModel)]="cname" placeholder="Channel Name" /><br>
+            <label>
+                <input type="checkbox" [(ngModel)]="cpublics">
+            </label>
+            <label>&nbsp;Public</label><br />
+            <button type="button" class="input-group-addon btn btn-primary btn-xlarge" id="submit"
+                (click)="addChannel()">submit</button>
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <!--Add a channel-->
+
+    <!-- <div *ngIf="show" class="container-fluid text-right but">
         <button type="button"  class="input-group-addon btn btn-secondary btn-xlarge" id="submit"
             (click)="onClick()">(+)</button>
             
@@ -18,7 +41,7 @@
                 (click)="onClick1()">submit</button>
         </div>
 
-    </div>
+    </div> -->
 
     <ul *ngIf="channels" class="list-group text-center">
         <li *ngFor="let channel of channels" (click)="channelClick(channel)" class="list-group-item bg-primary">

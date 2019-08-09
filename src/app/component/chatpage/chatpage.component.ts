@@ -36,11 +36,9 @@ export class ChatpageComponent implements OnInit {
     //this.refreshData();
     this.stompClient = this.sockService.getStompClient();
     this.stompClient.connect({}, frame => {
-      console.log('Connected: ' + frame);
       this.stompClient.subscribe(this.getSubscribeDest()
       , messageOutput => {
         this.messages.push(JSON.parse(messageOutput.body));
-        console.log(JSON.parse(messageOutput.body) + 'COOL BEANS');
       });
   });
   }
@@ -67,7 +65,6 @@ export class ChatpageComponent implements OnInit {
   getUserdata() {
     this.userService.getAllUserData().subscribe(
       data => {
-        console.log(data);
         this.allUser = data;
       }
     );

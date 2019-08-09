@@ -27,7 +27,7 @@ export class CmChatService {
   constructor(
     private http: HttpClient,
     private sockService: WebSocketService
-    //private socket: Socket1Service
+ 
   ) { }
   getData():Observable<Message[]> {
     return this.http.get<Message[]>(this.address + this.channel.channel_id, httpOptions);
@@ -37,18 +37,9 @@ export class CmChatService {
     let created = new Message();
     toSend.userId = fromId;
     toSend.message = message;
-    console.log(toSend);
-
-   // this.http.post(this.address + this.channel.channel_id+"/message", toSend, httpOptions).subscribe(response => console.log(response));
     this.sockService.sendMessage(this.socketDest + this.channel.channel_id, toSend);
 
-      // .subscribe(response => {
-      //   console.log(response);
-      //    created = response;
-      //   // this.socket.sendMessage(created);
-      
-      // });
-
+  
       
   }
 }
