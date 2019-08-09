@@ -18,9 +18,7 @@ export class ChatpageComponent implements OnInit {
   allUser: CurrentUser[];
   dataRefresher: any;
   messageBody: string;
-
   userTo:string = null;
-  
   stompClient = null;
 
   constructor(private directMessageService: DirectMessageService,
@@ -60,6 +58,13 @@ export class ChatpageComponent implements OnInit {
       }
     );
 
+  }
+
+  getMessageName(message:Message){
+    var result = this.allUser.filter(user => {
+      return user.user_id === message.userId
+     })
+     return result[0].username;
   }
 
   getUserdata() {

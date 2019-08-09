@@ -59,6 +59,13 @@ onClick() {
   this.messageBody = '';
 }
 
+getMessageName(message:Message){
+  var result = this.allUser.filter(user => {
+    return user.user_id === message.userId
+   })
+   return result[0].username;
+}
+
 getAllUsers(){
   this.userService.getAllUserData().subscribe(users => {
     this.allUser = users;

@@ -14,14 +14,12 @@
   <div class="card  bg-transparent text-white rounded-pill" *ngFor="let message of messages">
     <div class="card-body">
       <div class="row">
-        <!-- <div class="card-title start" *ngIf='allUser'>{{allUser[message.userId-1].username}}</div> -->
+        <div class="card-title start" *ngIf='allUser'>{{this.getMessageName(message)}}</div>
         <div class="card-subtitle ml-auto end">{{message.time}}</div>
       </div>
         <div class="card-text">{{message.message}}</div>
-      
+    
     </div>
-
-
   </div>
 
 </div>
