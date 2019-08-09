@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
   cpublics:boolean;
   showSignInModal:boolean;
   showChannelModal:boolean;
+  showAddChannelBtn:boolean;
   constructor(
     private loginService:LoginService,
     private cmService: CmListService,
@@ -53,6 +54,7 @@ export class ListComponent implements OnInit {
         }
       );
     this.users = null;
+    this.showAddChannelBtn = true;
   }
   listDM(){
     this.dmService.getUserList().subscribe(
@@ -61,6 +63,7 @@ export class ListComponent implements OnInit {
       }
     );
     this.channels = null;
+    this.showAddChannelBtn = null;
   }
 
   addChannelPop() {

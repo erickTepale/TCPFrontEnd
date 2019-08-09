@@ -2,7 +2,7 @@
     <app-header></app-header>
 
     <!--Add a channel-->
-    <div class="d-flex flex-row-reverse btn-container">
+    <div class="d-flex flex-row-reverse btn-container" *ngIf="showAddChannelBtn">
         <button class="btn btn-primary text-white" (click)="addChannelPop()">(+)</button>
     </div>
 
