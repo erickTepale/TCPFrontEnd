@@ -72,6 +72,5 @@ export class NavComponent implements OnInit {
 
   goDM() {
     this.router.navigate(['DM']);
-    console.log('?');
   }
 }

@@ -39,10 +39,8 @@ export class CmChatpageComponent implements OnInit {
     this.getAllUsers();
     this.stompClient = this.sockService.getStompClient();
     this.stompClient.connect({}, frame => {
-      console.log('Connected: ' + frame);
       this.stompClient.subscribe('/channel/' + this.cmService.channel.channel_id, messageOutput => {
         this.messages.push(JSON.parse(messageOutput.body));
-        console.log(JSON.parse(messageOutput.body) + 'COOL BEANS');
       });
   });
     //this.socket.initializeWebSocketConnection();
@@ -52,7 +50,6 @@ export class CmChatpageComponent implements OnInit {
 getCMdata(){this.cmService.getData().subscribe(
   data => {
     this.messages = data;
-    console.log(this.messages);
   }
 );
 }
@@ -65,7 +62,6 @@ onClick() {
 getAllUsers(){
   this.userService.getAllUserData().subscribe(users => {
     this.allUser = users;
-    console.log(this.allUser);
   });
 }
 
@@ -78,10 +74,8 @@ refreshData() {
 }
 
 listUser(){
-  console.log('inside listUser');
   this.userService.getAllUserData().subscribe(
     listUsers=>{
-      console.log(listUsers);
       this.listUsers=listUsers;
     }
   );
@@ -93,7 +87,6 @@ onCreate(){
   this.listUser();
 }
 listuserClick(currentUser){
-  console.log(currentUser);
   //this.listUsers=this.userService.getAllUserData
   this.cmLService.addUser(currentUser.user_id,this.cmService.channel);
  

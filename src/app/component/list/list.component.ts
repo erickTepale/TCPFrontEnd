@@ -27,6 +27,7 @@ export class ListComponent implements OnInit {
   cname:string;
   cpublics:boolean;
   showSignInModal:boolean;
+  showChannelModal:boolean;
   constructor(
     private loginService:LoginService,
     private cmService: CmListService,
@@ -45,21 +46,17 @@ export class ListComponent implements OnInit {
    }
 
   listChan(){
-    console.log("inside listChan");
     this.cmService.getChannelList()
       .subscribe(channels =>
         {
-          console.log(channels);
           this.channels = channels;
         }
       );
     this.users = null;
   }
   listDM(){
-    console.log('inside listDM');
     this.dmService.getUserList().subscribe(
       users => {
-        console.log(users);
         this.users = users;
       }
     );
@@ -67,12 +64,11 @@ export class ListComponent implements OnInit {
   }
 
   onClick() {
+    this.showChannelModal=true;
     if(this.add===false)
     this.add=true;
     else if(this.add===true)
     this.add=false;
-    //console.log(this.add);
-
   }
 
   hideButton(){
@@ -90,16 +86,16 @@ export class ListComponent implements OnInit {
 
   channelClick(channel:Channel){
     //inject channelID into the channel service
-    console.log(channel);
     this.cmChatService.channel = channel;
     this.router.navigate(['CM']);
   }
 
   userClick(user: CurrentUser) {
-    console.log(user);
     this.dmChatService.fromUser = user;
     this.router.navigate(['DM']);
   }
-
+  changeDisplay(){
+    this.showChannelModal=false;
+   }
 
 }
